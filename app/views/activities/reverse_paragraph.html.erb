@@ -3,14 +3,14 @@
 <% if params[:t] %>
     <div class='row-fluid'>
 
-        <div class='span6'>
+        <div class='span6 reversed'>
             <h4>Reversed</h4>
-            <%= simple_format @reverse_text %>
+            <%= simple_format(sanitize(@reverse_text, :tags => %w(a), :attributes => %w(class href)), {}, :sanitize => false) %>
         </div>
 
-        <div class='span6'>
+        <div class='span6 original'>
             <h4>Original</h4>
-            <%= simple_format @text %>
+            <%= simple_format @markup_text, :sanitize => false %>
         </div>
 
     </div>
