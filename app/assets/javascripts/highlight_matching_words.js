@@ -8,10 +8,12 @@ $(document).ready(function() {
         var id = $(this).attr('class');
 
         $(this).hover(function() {
-            $('a.' + id).addClass('highlighted');
+            var klass = $(this).parent().attr('class');
+            $('.' + klass + ' a.' + id).addClass('highlighted');
         },
         function() {
-            $('a.' + id).removeClass('highlighted');
+            var klass = $(this).parent().attr('class');
+            $('.' + klass + ' a.' + id).removeClass('highlighted');
         });
 
     });
