@@ -4,12 +4,12 @@
 
         <div class='span6 paragraph reversed'>
             <h4>Reversed</h4>
-            <%= simple_format(sanitize(@reverse_text, :tags => %w(a), :attributes => %w(class href)), {}, :sanitize => false) %>
+            <%= simple_format(sanitize(@reverse_text, :tags => %w(div a), :attributes => %w(class href)), {}, :sanitize => false) %>
         </div>
 
         <div class='span6 paragraph original'>
             <h4>Original</h4>
-            <%= simple_format @markup_text, :sanitize => false %>
+            <%= simple_format(sanitize(@markup_text, :tags => %w(div a), :attributes => %w(class href)), {}, :sanitize => false) %>
         </div>
 
     </div>

@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
         end
 
         if params[:t]
-            @text.lines.each do |line|
+            @text.lines.each do |line, index|
                 @reverse_text += line.split(' ').reverse.join(' ') + "\r\n"
             end
         end
@@ -25,17 +25,17 @@ class ActivitiesController < ApplicationController
 
     def add_markup(input, reverse=false)
         output = ''
-        input.lines.each do |line|
-            output += line.split.map { |word| "<a href='#' class='#{get_word_identifier(line.split, word, reverse)}'>#{word}</a>" }.join(' ') + "\r\n"
+        input.lines.each_with_index do |line, index|
+            output += "<div class='line#{index}'>" + line.split.each_with_index.map { |word, index| "<a href='#' class='#{get_word_identifier(line.split, index, reverse)}'>#{word}</a>" }.join(' ') + "</div>" + "\r\n"
         end
         output
     end
 
-    def get_word_identifier(array, value, reverse=false)
+    def get_word_identifier(array, index, reverse=false)
         if reverse
-            (array.length - array.index(value)) - 1
+            (array.length - index) - 1
         else
-            array.index(value)
+            index
         end
     end
 end

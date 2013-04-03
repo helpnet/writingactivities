@@ -4,3 +4,9 @@
 .paragraph a {
     color: rgb(61, 61, 61);
 }
+
+a.highlighted {
+    color: rgb(62, 179, 62);
+    font-weight: bold;
+    text-decoration: underline;
+}
