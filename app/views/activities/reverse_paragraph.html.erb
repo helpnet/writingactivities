@@ -1,14 +1,13 @@
 <h2>Reverse Paragraph</h2>
-
 <% if params[:t] %>
     <div class='row-fluid'>
 
-        <div class='span6 reversed'>
+        <div class='span6 paragraph reversed'>
             <h4>Reversed</h4>
             <%= simple_format(sanitize(@reverse_text, :tags => %w(a), :attributes => %w(class href)), {}, :sanitize => false) %>
         </div>
 
-        <div class='span6 original'>
+        <div class='span6 paragraph original'>
             <h4>Original</h4>
             <%= simple_format @markup_text, :sanitize => false %>
         </div>
