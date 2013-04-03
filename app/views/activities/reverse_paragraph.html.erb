@@ -1,0 +1,13 @@
+<h2>Reverse Paragraph</h2>
+
+<%= form_tag "/reverse-paragraph", :method => 'post' do %>
+    <%= label_tag :t, "Enter Text:" %>
+    <%= text_area_tag :t, @text, :rows => 10, :class => "span8" %>
+    <br />
+    <br />
+    <%= submit_tag "Submit", :class => "btn" %>
+<% end %>
+
+<div class='span8'>
+    <%= simple_format @reverse_text %>
+</div>
