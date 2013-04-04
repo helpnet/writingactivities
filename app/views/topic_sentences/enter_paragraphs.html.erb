@@ -1,0 +1,29 @@
+<h2>Topic Sentences</h2>
+
+<div class='row-fluid'>
+
+    <% if params[:t] %>
+        <div class='span10 offset1'>
+            <% @topic_sentences.each do |sentence| %>
+                <ul>
+                    <li><%= sentence %></li>
+                </ul>
+            <% end %>
+            <br />
+            <i>Does this match your outline?</i>
+        </div>
+    <% end %>
+
+    <div class='span8 offset2 large-top-margin'>
+        <%= form_tag "/topic-sentences", :method => 'post' do %>
+            <div>
+                <%= label_tag :t, "Enter Paragraphs:" %>
+            </div>
+            <%= text_area_tag :t, @text, :rows => 10, :class => "span12" %>
+            <br />
+            <br />
+            <%= submit_tag "Submit", :class => 'btn' %>
+        <% end %>
+    </div>
+
+</div>
