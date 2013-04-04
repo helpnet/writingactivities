@@ -1,0 +1,25 @@
+<h2>Reverse Sentences</h2>
+<% if params[:t] %>
+    <% @sentences.reverse.each do |sentence|  %>
+        <ul>
+            <li><%= sentence %></li>
+        </ul>
+    <% end %>
+            
+    <hr />
+<% end %>
+
+<div class='row-fluid'>
+
+    <div class='span8 offset2'>
+        <%= form_tag "/reverse-sentences", :method => 'post' do %>
+            <div>
+                <%= label_tag :t, "Enter Text:" %>
+            </div>
+            <%= text_area_tag :t, @text, :rows => 10, :class => "span12" %>
+            <br />
+            <br />
+            <%= submit_tag "Submit", :class => "btn" %>
+        <% end %>
+    </div>
+</div>

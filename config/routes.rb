@@ -5,6 +5,8 @@ Writingactivities::Application.routes.draw do
     post '/reverse-paragraph', :to => 'reverse_paragraph#reverse_paragraph'
     get '/topic-sentences', :to => 'topic_sentences#enter_paragraphs', :as => 'topic_sentences'
     post '/topic-sentences', :to => 'topic_sentences#enter_paragraphs'
+    get '/reverse-sentences', :to => 'reverse_sentences#reverse_sentences', :as => 'reverse_sentences'
+    post '/reverse-sentences', :to => 'reverse_sentences#reverse_sentences'
 
 
   # The priority is based upon order of creation:
