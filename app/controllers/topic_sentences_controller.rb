@@ -6,8 +6,9 @@ class TopicSentencesController < ApplicationController
         @lines = []
 
         @text.lines.each do |line|
-            matches =  /([^\r\n.!?]+([.!?]+|$))/.match(line)
-            @topic_sentences << matches[1] if matches.respond_to? :[]
+            line.gsub!(/[.] (\d+)/, '# \1')
+            sentence = line.split(/([.!?]['"]* )/).each_slice(2).map(&:join)[0]
+            @topic_sentences << sentence if sentence.chomp != ""
         end
     end
 end
