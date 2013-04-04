@@ -1,8 +1,8 @@
 Writingactivities::Application.routes.draw do
     root :to => 'home#home'
 
-    get '/reverse-paragraph', :to => 'reverse_paragraph#reverse_paragraph', :as => 'reverse_paragraph'
-    post '/reverse-paragraph', :to => 'reverse_paragraph#reverse_paragraph'
+    get '/reverse-words', :to => 'reverse_words#reverse_words', :as => 'reverse_words'
+    post '/reverse-words', :to => 'reverse_words#reverse_words'
     get '/topic-sentences', :to => 'topic_sentences#enter_paragraphs', :as => 'topic_sentences'
     post '/topic-sentences', :to => 'topic_sentences#enter_paragraphs'
     get '/reverse-sentences', :to => 'reverse_sentences#reverse_sentences', :as => 'reverse_sentences'

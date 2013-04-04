@@ -1,6 +1,6 @@
-class ReverseParagraphController < ApplicationController
+class ReverseWordsController < ApplicationController
 
-    def reverse_paragraph
+    def reverse_words
         @text = params[:t] || ''
 
         @reverse_text = ''
