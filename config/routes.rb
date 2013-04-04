@@ -1,8 +1,8 @@
 Writingactivities::Application.routes.draw do
     root :to => 'home#home'
 
-    get '/reverse-paragraph', :to => 'activities#reverse_paragraph', :as => 'reverse_paragraph'
-    post '/reverse-paragraph', :to => 'activities#reverse_paragraph'
+    get '/reverse-paragraph', :to => 'reverse_paragraph#reverse_paragraph', :as => 'reverse_paragraph'
+    post '/reverse-paragraph', :to => 'reverse_paragraph#reverse_paragraph'
 
 
   # The priority is based upon order of creation:
