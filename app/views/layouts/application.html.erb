@@ -11,9 +11,13 @@
         <div class="navbar-inner">
             <%= link_to "Writing Exercises", root_path, :class => 'brand' %>
             <ul class="nav">
-                <li><%= link_to "Check Topic Sentences", topic_sentences_path %></li>
-                <li><%= link_to "Reverse Words", reverse_words_path %></li>
-                <li><%= link_to "Reverse Sentences", reverse_sentences_path %></li>
+                <li class="dropdown"><a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Activities<b class="caret"></b></a>
+                    <ul class='dropdown-menu' role='menu' aria-labelledby="drop2">
+                        <li role='presentation'><%= link_to "Check Topic Sentences", topic_sentences_path, :role => 'menuitem' %></li>
+                        <li><%= link_to "Reverse Words", reverse_words_path, :role => 'menuitem' %></li>
+                        <li><%= link_to "Reverse Sentences", reverse_sentences_path, :role => 'menuitem' %></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
