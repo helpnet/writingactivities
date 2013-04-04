@@ -1,4 +1,8 @@
 <h2>Reverse Sentences</h2>
+<% if !params[:t] %>
+    Enter your text into the textbox. This will extract each sentence in isolation so that you can proofread the sentence structure without being distracted by context.
+<% end %>
+
 <% if params[:t] %>
     <% @sentences.reverse.each do |sentence|  %>
         <ul>
@@ -11,7 +15,7 @@
 
 <div class='row-fluid'>
 
-    <div class='span8 offset2'>
+    <div class='span8 offset2 large-top-margin'>
         <%= form_tag "/reverse-sentences", :method => 'post' do %>
             <div>
                 <%= label_tag :t, "Enter Text:" %>

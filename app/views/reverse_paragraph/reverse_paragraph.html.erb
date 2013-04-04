@@ -1,4 +1,8 @@
 <h2>Reverse Paragraph</h2>
+<% if !params[:t] %>
+Enter a paragraph into the text box. This will reverse each word in the paragraph so you can proofread for spelling errors or typos without being distracted by the context.
+<% end %>
+
 <% if params[:t] %>
     <div class='row-fluid'>
 
@@ -18,7 +22,7 @@
 
 <div class='row-fluid'>
 
-    <div class='span8 offset2'>
+    <div class='span8 offset2 large-top-margin'>
         <%= form_tag "/reverse-paragraph", :method => 'post' do %>
             <div>
                 <%= label_tag :t, "Enter Text:" %>
