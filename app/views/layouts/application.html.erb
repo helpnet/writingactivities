@@ -7,6 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class='navbar'>
+        <div class="navbar-inner">
+            <a class="brand" href="#">Writing Exercises</a>
+            <ul class="nav">
+                <li><%= link_to "Check Topic Sentences", topic_sentences_path %></li>
+                <li><%= link_to "Reverse Paragraph", reverse_paragraph_path %></li>
+                <li><%= link_to "Reverse Sentences", reverse_sentences_path %></li>
+            </ul>
+        </div>
+    </div>
 
     <div class='content'>
         <%= yield %>

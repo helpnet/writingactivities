@@ -1,5 +1,9 @@
 <h2>Topic Sentences</h2>
 
+<% if !params[:t] %>
+    Enter a few paragraphs in this text box. The program will return the first sentence of each paragraph.
+<% end %>
+
 <div class='row-fluid'>
 
     <% if params[:t] %>
