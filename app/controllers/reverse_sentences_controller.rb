@@ -4,7 +4,7 @@ class ReverseSentencesController < ApplicationController
 
         if params[:t]
             @sentences = Activity::sanitize_dots(@text.dup).split(/[.!?]['"]* |$/)
-            @sentences.each { |sentence| sentence.chomp }.reject! { |c| c.blank? }.map { |sentence| Activity::restore_dots!(sentence) }
+            @sentences.each { |sentence| sentence.chomp }.reject { |c| c.blank? }.map { |sentence| Activity::restore_dots!(sentence) }
         end
     end
 
