@@ -8,6 +8,8 @@ Writingactivities::Application.routes.draw do
     get '/reverse-sentences', :to => 'reverse_sentences#reverse_sentences', :as => 'reverse_sentences'
     post '/reverse-sentences', :to => 'reverse_sentences#reverse_sentences'
 
+    get '/sample-text', :to => 'home#sample_text', :as => 'sample_text'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
