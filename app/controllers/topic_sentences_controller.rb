@@ -6,8 +6,9 @@ class TopicSentencesController < ApplicationController
         @lines = []
 
         @text.lines.each do |line|
-            line.gsub!(/[.] (\d+)/, '# \1')
+            Activity::sanitize_dots!(line)
             sentence = line.split(/([.!?]['"]* )/).each_slice(2).map(&:join)[0]
+            Activity::restore_dots!(sentence)
             @topic_sentences << sentence if sentence.chomp != ""
         end
     end
