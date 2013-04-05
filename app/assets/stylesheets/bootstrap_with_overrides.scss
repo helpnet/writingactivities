@@ -19,7 +19,8 @@ a.highlighted {
         margin: 0;
     }
 
-    a {
+    input {
         color: $text-color;
+        margin: 0 !important;
     }
 }
