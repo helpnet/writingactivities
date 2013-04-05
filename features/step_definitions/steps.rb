@@ -31,3 +31,7 @@ end
 Then(/^I should see list item "(.*?)"$/) do |content|
     page.body.include?("<li>" + content + " </li>").should be_true
 end
+
+Then(/^I should see html "(.*?)"$/) do |arg1|
+    page.body.include?(arg1).should be_true
+end
