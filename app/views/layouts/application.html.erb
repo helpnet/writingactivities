@@ -13,9 +13,24 @@
             <ul class="nav">
                 <li class="dropdown"><a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Activities<b class="caret"></b></a>
                     <ul class='dropdown-menu' role='menu' aria-labelledby="drop2">
-                        <li role='presentation'><%= link_to "Check Topic Sentences", topic_sentences_path, :role => 'menuitem' %></li>
-                        <li><%= link_to "Reverse Words", reverse_words_path, :role => 'menuitem' %></li>
-                        <li><%= link_to "Reverse Sentences", reverse_sentences_path, :role => 'menuitem' %></li>
+                        <% if params[:t] %>
+                            <%= form_tag topic_sentences_path, :method => 'post' do %>
+                                <%= hidden_field_tag :t, params[:t] %>
+                                <li><%= submit_tag "Check Topic Sentences", :class => 'btn btn-link' %></li>
+                            <% end %>
+                            <%= form_tag reverse_words_path, :method => 'post' do %>
+                                <%= hidden_field_tag :t, params[:t] %>
+                                <li><%= submit_tag "Reverse Words", :class => 'btn btn-link' %></li>
+                            <% end %>
+                            <%= form_tag reverse_sentences_path, :method => 'post' do %>
+                                <%= hidden_field_tag :t, params[:t] %>
+                                <li><%= submit_tag "Reverse Sentences", :class => 'btn btn-link' %></li>
+                            <% end %>
+                        <% else %>
+                            <li role='presentation'><%= link_to "Check Topic Sentences", topic_sentences_path, :role => 'menuitem' %></li>
+                            <li role='presentation'><%= link_to "Reverse Words", reverse_words_path, :role => 'menuitem' %></li>
+                            <li role='presentation'><%= link_to "Reverse Sentences", reverse_sentences_path, :role => 'menuitem' %></li>
+                        <% end %>
                     </ul>
                 </li>
             </ul>

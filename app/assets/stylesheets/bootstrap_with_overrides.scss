@@ -1,12 +1,25 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
+$text-color: rgb(61, 61, 61);
+
 .paragraph a {
     color: rgb(61, 61, 61);
 }
 
 a.highlighted {
-    color: rgb(62, 179, 62);
+    color: $text-color;
     font-weight: bold;
     text-decoration: underline;
+}
+
+.dropdown-menu {
+
+    form {
+        margin: 0;
+    }
+
+    a {
+        color: $text-color;
+    }
 }
