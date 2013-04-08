@@ -1,19 +1,19 @@
 <h2>Reverse Sentences</h2>
-<% if !params[:t] %>
-    Enter your text into the textbox. This will extract each sentence in isolation so that you can proofread the sentence structure without being distracted by context.
-<% end %>
-
-<% if params[:t] %>
-    <% @sentences.reverse.each do |sentence|  %>
-        <ul>
-            <li><%= sentence %></li>
-        </ul>
-    <% end %>
-            
-    <hr />
-<% end %>
-
 <div class='row-fluid'>
+    <% if !params[:t] %>
+        Enter your text into the textbox. This will extract each sentence in isolation so that you can proofread the sentence structure without being distracted by context.
+    <% end %>
+
+    <% if params[:t] %>
+        <div class='span10 offset1'>
+            <table class='table table-striped table-bordered'>
+            <% @sentences.reverse.each do |sentence|  %>
+                <tr><td><%= sentence %></td></tr>
+            <% end %>
+            </table>        
+            <hr />
+        <% end %>
+    </div>
 
     <div class='span8 offset2 large-top-margin'>
         <%= form_tag "/reverse-sentences", :method => 'post' do %>
