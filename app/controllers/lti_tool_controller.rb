@@ -6,18 +6,25 @@ class LtiToolController < ApplicationController
 
         authorize!
 
-        if params['custom_path']
-            redirect_to "/#{params['custom_path']}"
+        if @valid_lti
+            if @tp.custom_params['path']
+                redirect_to "/#{@tp.custom_params['path']}"
+            else
+                redirect_to :root
+            end
         end
 
     end
 
     def authorize!
 
+        @valid_lti = false
+
         if key = params['oauth_consumer_key']
             if secret = $oauth_creds[key]
                 @tp = IMS::LTI::ToolProvider.new(key, secret, params)
                 @message = "Successful LTI launch."
+                @valid_lti = true
             else
                 @tp = IMS::LTI::ToolProvider.new(nil, nil, params)
                 @tp.lti_msg = "Your consumer didn't use a recognized key."
@@ -35,6 +42,7 @@ class LtiToolController < ApplicationController
         @lti_stuff = @tp.inspect
 
         session['launch_params'] = @tp.to_params
+        session['lti_username'] = @tp.username
     end
 
 end
