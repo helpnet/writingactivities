@@ -4,6 +4,16 @@ class LtiToolController < ApplicationController
 
     def lti_tool
 
+        authorize!
+
+        if params['custom_path']
+            redirect_to "/#{params['custom_path']}"
+        end
+
+    end
+
+    def authorize!
+
         if key = params['oauth_consumer_key']
             if secret = $oauth_creds[key]
                 @tp = IMS::LTI::ToolProvider.new(key, secret, params)
@@ -25,11 +35,6 @@ class LtiToolController < ApplicationController
         @lti_stuff = @tp.inspect
 
         session['launch_params'] = @tp.to_params
-
-        if params['custom_path']
-            redirect_to "/#{params['custom_path']}"
-        end
-
     end
 
 end
