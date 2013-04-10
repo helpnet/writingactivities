@@ -11,3 +11,14 @@
         <li><%= link_to "Reverse Sentences", reverse_sentences_path %> Reverse each sentence to proofread for sentence structure and clarity.</li>
     </ul>
 </div>
+
+<% if @tp %>
+
+    <div class='span12'>
+        <%= link_to 'Show LTI Info', '#', :class => 'lti-info-link' %>
+        <div class='lti-info'>
+            <%= @tp.inspect %>
+        </div>
+    </div>
+
+<% end %>
