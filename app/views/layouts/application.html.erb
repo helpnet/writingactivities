@@ -42,6 +42,17 @@
         </div>
     </div>
 
+    <% if !alert.nil? %>
+        <div class='alert alert-error'>
+            <%= alert %>
+        </div>
+    <% end %>
+    <% if !notice.nil? %>
+        <div class='alert alert-success'>
+            <%= alert %>
+        </div>
+    <% end %>
+
     <div class='content'>
         <%= yield %>
     </div>

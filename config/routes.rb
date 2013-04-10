@@ -11,6 +11,7 @@ Writingactivities::Application.routes.draw do
     get '/sample-text', :to => 'home#sample_text', :as => 'sample_text'
 
     post '/lti-tool', :to => 'lti_tool#lti_tool', :as => 'lti_test'
+    post '/lti-exam', :to => 'lti_tool#lti_exam', :as => 'lti_exam'
 
 
   # The priority is based upon order of creation:

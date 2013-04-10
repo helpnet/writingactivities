@@ -16,6 +16,29 @@ class LtiToolController < ApplicationController
 
     end
 
+    def lti_exam
+        if session['launch_params']
+            key = session['launch_params']['oauth_consumer_key']
+        else
+            flash[:alert] = "Tool never launched."
+        end
+
+        @tp = IMS::LTI::ToolProvider.new(key, $oauth_creds[key], session['launch_params'])
+
+        if !@tp.outcome_service?
+            flash[:alert] = "Tool not launched as an outcome service."
+        end
+
+        res = @tp.post_replace_result!(params['score'])
+
+        if res.success?
+            redirect_to :root, :alert => "You gave youtself a #{params['score'].to_f * 100}."
+        else
+            flash[:alert] = "Score not sent. #{res.description}"
+        end
+
+    end
+
     def authorize!
 
         @valid_lti = false
