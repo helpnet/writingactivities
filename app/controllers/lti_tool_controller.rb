@@ -12,6 +12,8 @@ class LtiToolController < ApplicationController
             else
                 redirect_to :root, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
             end
+        else
+            redirect_to :root, :alert => @message
         end
 
     end
@@ -60,12 +62,15 @@ class LtiToolController < ApplicationController
 
         if !@tp.valid_request?(request)
             @message = "The OAuth signature was invalid."
+            @valid_lti = false
         end
 
         @lti_stuff = @tp.inspect
 
-        session['launch_params'] = @tp.to_params
-        session['lti_username'] = @tp.username
+        if @valid_lti
+            session['launch_params'] = @tp.to_params
+            session['lti_username'] = @tp.username
+        end
     end
 
 end
