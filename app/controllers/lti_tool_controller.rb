@@ -10,7 +10,7 @@ class LtiToolController < ApplicationController
             if @tp.custom_params['path']
                 redirect_to "/#{@tp.custom_params['path']}"
             else
-                redirect_to :root
+                redirect_to :root, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
             end
         end
 
@@ -32,7 +32,7 @@ class LtiToolController < ApplicationController
         res = @tp.post_replace_result!(params['score'])
 
         if res.success?
-            redirect_to :root, :notice => "You gave youtself a #{params['score'].to_f * 100}."
+            redirect_to :root, :notice => "You gave yourself #{params['score'].to_f * 100}"
         else
             flash[:alert] = "Score not sent. #{res.description}"
         end
