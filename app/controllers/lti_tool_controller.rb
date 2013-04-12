@@ -28,15 +28,15 @@ class LtiToolController < ApplicationController
         @tp = IMS::LTI::ToolProvider.new(key, $oauth_creds[key], session['launch_params'])
 
         if !@tp.outcome_service?
-            flash[:alert] = "Tool not launched as an outcome service."
-        end
-
-        res = @tp.post_replace_result!(params['score'])
-
-        if res.success?
-            redirect_to :root, :notice => "You gave yourself #{params['score'].to_f * 100}"
+            redirect_to :root, :alert =>  "Tool not launched as an outcome service."
         else
-            flash[:alert] = "Score not sent. #{res.description}"
+            res = @tp.post_replace_result!(params['score'])
+
+            if res.success?
+                redirect_to :root, :notice => "You gave yourself #{params['score'].to_f * 100}"
+            else
+                flash[:alert] = "Score not sent. #{res.description}"
+            end
         end
 
     end
