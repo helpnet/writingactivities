@@ -57,7 +57,7 @@ class LtiToolController < ApplicationController
         @valid_lti = false
 
         if key = params['oauth_consumer_key']
-            if secret = $oauth_creds[key]
+            if Consumer.find_by_key(key) and secret = Consumer.find_by_key(key).secret
                 @tp = IMS::LTI::ToolProvider.new(key, secret, params)
                 @message = "Successful LTI launch."
                 @valid_lti = true
