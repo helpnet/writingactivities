@@ -9,12 +9,11 @@
 <body>
     <div class='navbar'>
         <div class="navbar-inner">
-            <% if session['launch_params'] %>
-                <%= link_to session['launch_params']['context_title'], root_path, :class => 'brand' %>
-            <% else %>
-                <%= link_to 'Writing Exercises', root_path, :class => 'brand' %>
-            <% end %>
+            <%= link_to 'Writing Exercises', root_path, :class => 'brand' %>
             <ul class="nav">
+                <% if session['launch_params'] %>
+                    <li><%= link_to session['launch_params']['context_title'], root_path %></li>
+                <% end %>
                 <li class="dropdown"><a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Activities<b class="caret"></b></a>
                     <ul class='dropdown-menu' role='menu' aria-labelledby="drop2">
                         <% if params[:t] %>
