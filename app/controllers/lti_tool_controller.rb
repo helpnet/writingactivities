@@ -14,7 +14,7 @@ class LtiToolController < ApplicationController
             if @tp.custom_params['path']
                 redirect_to "/#{@tp.custom_params['path']}"
             else
-                redirect_to :root, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
+                redirect_to @context, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
             end
         else
             redirect_to :root, :alert => @message
