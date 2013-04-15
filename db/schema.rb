@@ -11,11 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415125007) do
+ActiveRecord::Schema.define(:version => 20130415153649) do
 
   create_table "activities", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "consumers", :force => true do |t|
+    t.string   "name"
+    t.string   "key"
+    t.string   "secret"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "contexts", :force => true do |t|
+    t.string   "context_label"
+    t.string   "context_title"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "consumer_id"
   end
 
   create_table "users", :force => true do |t|
