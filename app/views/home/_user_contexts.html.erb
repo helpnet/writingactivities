@@ -1,4 +1,5 @@
-<ul>
+<h3>My Courses</h3>
+<ul class="unstyled">
     <% current_user.contexts.each do |context| %>
         <li><%= link_to "#{context.context_label} #{context.context_title}", context %></li>
     <% end %>
