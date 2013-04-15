@@ -9,12 +9,6 @@
         </ul>
     </div>
 
-    <div class='span4 user-contexts'>
-        <% if user_signed_in? and current_user.contexts.length > 0 %>
-            <%= render 'user_contexts' %>
-        <% end %>
-    </div>
-
     <% if @tp %>
         <div class='span12'>
             <%= form_tag lti_exam_path, :method => 'post' do %>
