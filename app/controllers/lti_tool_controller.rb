@@ -1,7 +1,5 @@
 class LtiToolController < ApplicationController
 
-    $oauth_creds = {"test" => "secret", "testing" => "supersecret"}
-
     def lti_tool
 
         authorize!
@@ -28,7 +26,7 @@ class LtiToolController < ApplicationController
             flash[:alert] = "Tool never launched."
         end
 
-        @tp = IMS::LTI::ToolProvider.new(key, $oauth_creds[key], session['launch_params'])
+        @tp = IMS::LTI::ToolProvider.new(key, Consumer.find_by_key(key).secret, session['launch_params'])
 
         if !@tp.outcome_service?
             redirect_to :root, :alert =>  "Tool not launched as an outcome service."
