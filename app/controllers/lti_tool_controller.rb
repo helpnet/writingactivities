@@ -8,6 +8,8 @@ class LtiToolController < ApplicationController
             
             @context = @consumer.contexts.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title)
             user = create_or_sign_in(@tp.lis_person_contact_email_primary)
+
+            Membership.create!( :user_id => user.id, :context_id => @context.id, :role => @tp.roles[0] ) unless user.contexts.include?(@context)
             
             if @tp.custom_params['path']
                 redirect_to "/#{@tp.custom_params['path']}"
@@ -43,10 +45,10 @@ class LtiToolController < ApplicationController
 
     end
 
-    def create_or_sign_in(email, role)
+    def create_or_sign_in(email)
         if user = User.find_by_email(email)
         else
-            user = User.create!( :email => email, :password => Devise.friendly_token[0,20], :role => role )
+            user = User.create!( :email => email, :password => Devise.friendly_token[0,20])
         end
         sign_in :user, user
     end
