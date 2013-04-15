@@ -1,0 +1,5 @@
+<ul>
+    <% current_user.contexts.each do |context| %>
+        <li><%= link_to "#{context.context_label} #{context.context_title}", context %></li>
+    <% end %>
+</ul>

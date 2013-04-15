@@ -1,30 +1,39 @@
-<div class='span8'>
-    <ul class='nav nav-pills nav-stacked'>
-        <li><%= link_to "Check Topic Sentences", topic_sentences_path %> Isolate the first sentences of each paragraph to check it against your outline.</li>
-        <br />
-        <li><%= link_to "Reverse Words", reverse_words_path %>Reverse all the words in the text to proofread for typos or spelling.</li>
-        <br />
-        <li><%= link_to "Reverse Sentences", reverse_sentences_path %> Reverse each sentence to proofread for sentence structure and clarity.</li>
-    </ul>
-</div>
-
-<% if @tp %>
-    <div class='span12'>
-        <%= form_tag lti_exam_path, :method => 'post' do %>
-            <%= text_field_tag :score, '', :class => 'input-mini' %>
+<div class='row-fluid'>
+    <div class='span8'>
+        <ul class='nav nav-pills nav-stacked'>
+            <li><%= link_to "Check Topic Sentences", topic_sentences_path %> Isolate the first sentences of each paragraph to check it against your outline.</li>
             <br />
-            <%= submit_tag "Give yourself a grade between 0 and 1", :class => 'btn' %>
+            <li><%= link_to "Reverse Words", reverse_words_path %>Reverse all the words in the text to proofread for typos or spelling.</li>
+            <br />
+            <li><%= link_to "Reverse Sentences", reverse_sentences_path %> Reverse each sentence to proofread for sentence structure and clarity.</li>
+        </ul>
+    </div>
+
+    <div class='span4 user-contexts'>
+        <% if user_signed_in? and current_user.contexts.length > 0 %>
+            <%= render 'user_contexts' %>
         <% end %>
     </div>
-<% end %>
 
-<% if @tp %>
-
-    <div class='span12'>
-        <%= link_to 'Show LTI Info', '#', :class => 'lti-info-link' %>
-        <div class='lti-info'>
-            <%= @tp.inspect %>
+    <% if @tp %>
+        <div class='span12'>
+            <%= form_tag lti_exam_path, :method => 'post' do %>
+                <%= text_field_tag :score, '', :class => 'input-mini' %>
+                <br />
+                <%= submit_tag "Give yourself a grade between 0 and 1", :class => 'btn' %>
+            <% end %>
         </div>
-    </div>
+    <% end %>
 
-<% end %>
+    <% if @tp %>
+
+        <div class='span12'>
+            <%= link_to 'Show LTI Info', '#', :class => 'lti-info-link' %>
+            <div class='lti-info'>
+                <%= @tp.inspect %>
+            </div>
+        </div>
+
+    <% end %>
+
+</div>

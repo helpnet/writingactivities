@@ -15,6 +15,8 @@ Writingactivities::Application.routes.draw do
     post '/lti-tool', :to => 'lti_tool#lti_tool', :as => 'lti_test'
     post '/lti-exam', :to => 'lti_tool#lti_exam', :as => 'lti_exam'
 
+    resources :contexts, :only => [:show]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

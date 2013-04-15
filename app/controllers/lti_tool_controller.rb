@@ -6,8 +6,9 @@ class LtiToolController < ApplicationController
 
         if @valid_lti
             
-            @context = Context.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title)
-            create_or_sign_in(@tp.lis_person_contact_email_primary)
+            @context = @consumer.contexts.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title)
+            user = create_or_sign_in(@tp.lis_person_contact_email_primary)
+            @context.users << user unless @context.users.include?(user)
             
             if @tp.custom_params['path']
                 redirect_to "/#{@tp.custom_params['path']}"
@@ -56,7 +57,7 @@ class LtiToolController < ApplicationController
         @valid_lti = false
 
         if key = params['oauth_consumer_key']
-            if Consumer.find_by_key(key) and secret = Consumer.find_by_key(key).secret
+            if @consumer = Consumer.find_by_key(key) and secret = @consumer.secret
                 @tp = IMS::LTI::ToolProvider.new(key, secret, params)
                 @message = "Successful LTI launch."
                 @valid_lti = true
