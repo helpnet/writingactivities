@@ -7,6 +7,9 @@ class LtiToolController < ApplicationController
         authorize!
 
         if @valid_lti
+            
+            create_or_sign_in(@tp.lis_person_contact_email_primary)
+            
             if @tp.custom_params['path']
                 redirect_to "/#{@tp.custom_params['path']}"
             else
@@ -39,6 +42,14 @@ class LtiToolController < ApplicationController
             end
         end
 
+    end
+
+    def create_or_sign_in(email)
+        if user = User.find_by_email(email)
+        else
+            user = User.create!( :email => email, :password => Devise.friendly_token[0,20] )
+        end
+        sign_in :user, user
     end
 
     def authorize!

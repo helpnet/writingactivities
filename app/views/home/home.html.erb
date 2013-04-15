@@ -1,8 +1,4 @@
 <div class='span8'>
-    <% if session['lti_username'] %>
-        <p>Howdy, <%= session['lti_username'] %></p>
-    <% end %>
-
     <ul class='nav nav-pills nav-stacked'>
         <li><%= link_to "Check Topic Sentences", topic_sentences_path %> Isolate the first sentences of each paragraph to check it against your outline.</li>
         <br />
