@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415153649) do
+ActiveRecord::Schema.define(:version => 20130415163349) do
 
   create_table "activities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(:version => 20130415153649) do
     t.datetime "updated_at",    :null => false
     t.integer  "consumer_id"
   end
+
+  create_table "contexts_users", :id => false, :force => true do |t|
+    t.integer "context_id", :null => false
+    t.integer "user_id",    :null => false
+  end
+
+  add_index "contexts_users", ["context_id", "user_id"], :name => "index_contexts_users_on_context_id_and_user_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
