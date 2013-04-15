@@ -7,8 +7,7 @@ class LtiToolController < ApplicationController
         if @valid_lti
             
             @context = @consumer.contexts.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title)
-            user = create_or_sign_in(@tp.lis_person_contact_email_primary, @tp.roles[0])
-            @context.users << user unless @context.users.include?(user)
+            user = create_or_sign_in(@tp.lis_person_contact_email_primary)
             
             if @tp.custom_params['path']
                 redirect_to "/#{@tp.custom_params['path']}"
