@@ -1,4 +1,6 @@
 Writingactivities::Application.routes.draw do
+  devise_for :users
+
     root :to => 'home#home'
 
     get '/reverse-words', :to => 'reverse_words#reverse_words', :as => 'reverse_words'
