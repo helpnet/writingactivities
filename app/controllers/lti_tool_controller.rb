@@ -77,11 +77,33 @@ class LtiToolController < ApplicationController
             @valid_lti = false
         end
 
+        if Time.now.utc.to_i - @tp.request_oauth_timestamp.to_i > 60*60
+            @valid_lti = false
+            @message = "Request is too old"
+        end
+
+        if !nonce_is_valid?(@tp.request_oauth_nonce, @tp.request_oauth_timestamp)
+            @valid_lti = false
+            @message = "Nonce was already used, please try again."
+        end
+
+
         @lti_stuff = @tp.inspect
 
         if @valid_lti
             session['launch_params'] = @tp.to_params
             session['lti_username'] = @tp.username
+        end
+    end
+
+    def nonce_is_valid?(nonce, timestamp)
+        if existing_nonce = NonceTimestamp.find_by_nonce(nonce)
+            if existing_nonce.oauth_timestamp == timestamp
+                return false
+            end
+        else
+            NonceTimestamp.create(:nonce => nonce, :oauth_timestamp => timestamp)
+            return true
         end
     end
 

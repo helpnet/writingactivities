@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415182212) do
+ActiveRecord::Schema.define(:version => 20130416195830) do
 
   create_table "activities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(:version => 20130415182212) do
 
   add_index "memberships", ["context_id"], :name => "index_memberships_on_context_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
+  create_table "nonce_timestamps", :id => false, :force => true do |t|
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "nonce"
+    t.string   "oauth_timestamp"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
