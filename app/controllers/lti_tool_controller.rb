@@ -9,7 +9,7 @@ class LtiToolController < ApplicationController
             @context = @consumer.contexts.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title)
             user = create_or_sign_in(@tp.lis_person_contact_email_primary)
 
-            role = Membership.roles[@tp.roles[0]] || @tp.roles[0]
+            role = set_role(@tp.roles)
 
             Membership.create!( :user_id => user.id, :context_id => @context.id, :role => role ) unless user.contexts.include?(@context)
             
@@ -109,4 +109,11 @@ class LtiToolController < ApplicationController
         end
     end
 
+    def set_role(roles)
+        if roles.include?("urn:lti:role:ims/lis/instructor") or roles.include?("instructor")
+            "instructor"
+        else
+            "learner"
+        end
+    end
 end
