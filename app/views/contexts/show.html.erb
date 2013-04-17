@@ -1,8 +1,8 @@
-<h2><%= "#{@context.context_label} #{@context.context_title}" %></h2>
+<h2><%= link_to "#{@context.context_label} #{@context.context_title}", @context %></h2>
+<p><i>Viewing course as: </i><span class='label label-info'><%= @role %></span></p>
 <hr />
 
 <h3>Grade Demo</h3>
-<p><i>You are viewing this course group as a <%= @role %></i></p>
     <% if session['launch_params'] %>
         <div class='span12'>
             <%= form_tag lti_exam_path, :method => 'post' do %>
