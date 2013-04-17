@@ -2,7 +2,12 @@
 <p><i>Viewing course as: </i><span class='label label-info'><%= @role %></span></p>
 <hr />
 
-<h3>Grade Demo</h3>
+<div class='span7'>
+    <p>This is a 'context' space. Context is a grouping of users such as a course.</p>
+</div>
+
+<div class='span4'>
+    <h3>Grade Demo</h3>
     <% if session['launch_params'] %>
         <div class='span12'>
             <%= form_tag lti_exam_path, :method => 'post' do %>
@@ -14,3 +19,4 @@
             <% end %>
         </div>
     <% end %>
+</div>
