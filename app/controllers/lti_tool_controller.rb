@@ -25,6 +25,8 @@ class LtiToolController < ApplicationController
     end
 
     def lti_exam
+        @context = Context.find(params[:context]);
+
         if session['launch_params']
             key = session['launch_params']['oauth_consumer_key']
         else
@@ -34,12 +36,12 @@ class LtiToolController < ApplicationController
         @tp = IMS::LTI::ToolProvider.new(key, Consumer.find_by_key(key).secret, session['launch_params'])
 
         if !@tp.outcome_service?
-            redirect_to :root, :alert =>  "Tool not launched as an outcome service."
+            redirect_to @context, :alert =>  "Tool not launched as an outcome service."
         else
             res = @tp.post_replace_result!(params['score'])
 
             if res.success?
-                redirect_to Context.find(params[:context]), :notice => "You gave yourself #{params['score'].to_f * 100}"
+                redirect_to @context, :notice => "You gave yourself #{params['score'].to_f * 100}"
             else
                 flash[:alert] = "Score not sent. #{res.description}"
             end
