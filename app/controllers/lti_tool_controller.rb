@@ -6,17 +6,25 @@ class LtiToolController < ApplicationController
 
         if @valid_lti
             
-            @context = @consumer.contexts.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title)
-            user = create_or_sign_in(@tp.lis_person_contact_email_primary)
+            @context = @consumer.contexts.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title) if @tp.context_label and  @tp.context_title
+            
+            user = create_or_sign_in(@tp.lis_person_contact_email_primary) if @tp.lis_person_contact_email_primary
 
-            role = set_role(@tp.roles)
+            if user && @tp.roles
 
-            Membership.create!( :user_id => user.id, :context_id => @context.id, :role => role ) unless user.contexts.include?(@context)
+                role = set_role(@tp.roles)
+
+                Membership.create!( :user_id => user.id, :context_id => @context.id, :role => role ) unless user.contexts.include?(@context)
+            end
             
             if @tp.custom_params['path']
                 redirect_to "/#{@tp.custom_params['path']}"
             else
-                redirect_to @context, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
+                if user
+                    redirect_to @context, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
+                else
+                    redirect_to @context, :notice => "Successful lti launch, but no user data"
+                end
             end
         else
             redirect_to :root, :alert => @message
