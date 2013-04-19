@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+Consumer.find_or_create_by_name(:name => 'Cool University', :key => 'test', 'secret' => 'secret')
