@@ -23,7 +23,7 @@ class LtiToolController < ApplicationController
                 if user
                     redirect_to @context, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
                 else
-                    redirect_to @context, :notice => "Successful lti launch, but no user data"
+                    redirect_to :root, :notice => "No valid user data"
                 end
             end
         else
