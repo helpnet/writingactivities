@@ -3,6 +3,7 @@
 <hr />
 
 <% if current_user == @submission.user %>
+    <h3>Peer Feedback</h3>
     <%= render 'peer_evaluations/feedback' %>
 <% else %>
     <%= render 'peer_evaluations/form' %>
