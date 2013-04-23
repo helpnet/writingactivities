@@ -2,8 +2,17 @@
     <p>This is a proof-of-concept framework for a writing support web application</p>
     <p>The site can stand on its own or be launched from a course via LTI</p>
 
+    <% if current_user and current_user.contexts.length > 0 %>
+        <h2>My Groups</h2>
+        <%= div_for current_user.contexts do |context| %>
+            <%= link_to "#{context.context_label} #{context.context_title}", context %>
+        <% end %>
+    <% end %>
+
 
     <% if @tp %>
+        <br />
+        <br/>
 
         <div class='span12'>
             <%= link_to 'Show LTI Info', '#', :class => 'lti-info-link' %>
