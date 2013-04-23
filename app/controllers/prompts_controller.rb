@@ -11,7 +11,7 @@ class PromptsController < ApplicationController
 
     def create
         @context = Context.find(params[:context_id])
-        @prompt = Prompt.new(params[:prompt])
+        @prompt = @context.prompts.new(params[:prompt])
 
         if @prompt.save
             redirect_to context_prompt_path(@context, @prompt)
@@ -19,6 +19,19 @@ class PromptsController < ApplicationController
             render :create
         end
 
+    end
+
+    def edit
+        @context = Context.find(params[:context_id])
+        @prompt = Prompt.find(params[:id])
+    end
+
+    def update
+        @context = Context.find(params[:context_id])
+        @prompt = Prompt.find(params[:id])
+        @prompt.update_attributes(params[:prompt])
+
+        redirect_to context_prompt_path(@context, @prompt)
     end
 
 end
