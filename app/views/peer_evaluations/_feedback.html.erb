@@ -1,0 +1,17 @@
+<table class='table table-striped table-bordered'>
+    <thead>
+        <tr>
+            <th>Main Idea</th>
+            <th>What Works</th>
+            <th>What Doesn't Work</th>
+        </tr>
+    </thead>
+
+    <% @submission.peer_evaluations.each do |evaluation| %>
+        <tr>
+            <td><%= evaluation.main_idea %></td>
+            <td><%= evaluation.works %></td>
+            <td><%= evaluation.does_not_work %></td>
+        </tr>
+    <% end %>
+</table>

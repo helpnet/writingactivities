@@ -1,0 +1,18 @@
+<%= form_for([@submission, @submission.peer_evaluations.build]) do |f| %>
+    <div>
+        <%= f.label :main_idea, "Summarize the main idea in one sentence:" %>
+        <%= f.text_area :main_idea, :class => 'span6', :rows => 3 %>
+    </div>
+
+    <div>
+        <%= f.label :works, "What works?" %>
+        <%= f.text_area :works, :class => 'span6', :rows => 3 %>
+    </div>
+
+    <div>
+        <%= f.label :does_not_work, "What does not work?" %>
+        <%= f.text_area :does_not_work, :class => 'span6', :rows => 3 %>
+    </div>
+    <%= f.submit :class => 'btn' %>
+
+<% end %>

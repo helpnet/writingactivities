@@ -23,6 +23,10 @@ Writingactivities::Application.routes.draw do
         resources :submissions
     end
 
+    resources :submissions do
+        resources :peer_evaluations
+    end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

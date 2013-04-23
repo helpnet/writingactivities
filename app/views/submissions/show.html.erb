@@ -1,2 +1,9 @@
 <p><%= simple_format @submission.body %></p>
 <%= link_to "<< Back", context_prompt_path(@prompt.context, @prompt) %>
+<hr />
+
+<% if current_user == @submission.user %>
+    <%= render 'peer_evaluations/feedback' %>
+<% else %>
+    <%= render 'peer_evaluations/form' %>
+<% end %>
