@@ -1,0 +1,14 @@
+<div class='span4'>
+    <h3>Grade Demo</h3>
+    <% if session['launch_params'] %>
+        <div class='span12'>
+            <%= form_tag lti_exam_path, :method => 'post' do %>
+                <i>Enter a number between 1 and 0: </i>
+                <%= text_field_tag :score, '', :class => 'input-mini' %>
+                <%= hidden_field_tag :context, @context.id %>
+                <br />
+                <%= submit_tag "Give yourself a grade", :class => 'btn' %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
