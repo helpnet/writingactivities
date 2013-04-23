@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423150134) do
+ActiveRecord::Schema.define(:version => 20130423155130) do
 
   create_table "activities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(:version => 20130423150134) do
     t.string   "nonce"
     t.string   "oauth_timestamp"
   end
+
+  create_table "peer_evaluations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "submission_id"
+    t.text     "works"
+    t.text     "does_not_work"
+    t.text     "main_idea"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "peer_evaluations", ["submission_id"], :name => "index_peer_evaluations_on_submission_id"
+  add_index "peer_evaluations", ["user_id"], :name => "index_peer_evaluations_on_user_id"
 
   create_table "prompts", :force => true do |t|
     t.string   "title"

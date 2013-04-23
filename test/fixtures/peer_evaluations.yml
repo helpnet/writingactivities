@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  submission: 
+  works: MyText
+  does_not_work: MyText
+  main_idea: MyText
+
+two:
+  user: 
+  submission: 
+  works: MyText
+  does_not_work: MyText
+  main_idea: MyText
