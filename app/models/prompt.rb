@@ -2,5 +2,6 @@ class Prompt < ActiveRecord::Base
   attr_accessible :body, :context, :title
 
   belongs_to :context
+  has_many :submissions
 
 end

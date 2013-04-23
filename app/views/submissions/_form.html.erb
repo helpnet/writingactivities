@@ -1,0 +1,6 @@
+<%= form_for([@prompt, @submission]) do |f| %>
+    <%= f.label :body %>
+    <%= f.text_area :body, :class => 'span6' %>
+    <br />
+    <%= f.submit :class => 'btn' %>
+<% end %>
