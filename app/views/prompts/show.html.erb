@@ -1,3 +1,4 @@
 <%= link_to "<< Back To Group", @context %>
 <h2><%= @prompt.title %></h2>
+<%= link_to "[Edit]", edit_context_prompt_path(@context, @prompt) %>
 <p><%= @prompt.body %></h2>
