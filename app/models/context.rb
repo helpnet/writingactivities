@@ -4,4 +4,6 @@ class Context < ActiveRecord::Base
   belongs_to :consumer
   has_many :memberships
   has_many :users, :through => :memberships
+  has_many :prompts
+
 end
