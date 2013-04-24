@@ -1,9 +1,9 @@
 <h2><%= link_to "#{@context.context_label} #{@context.context_title}", @context %></h2>
 <p><i>Viewing course as: </i><span class='label label-info'><%= @role %></span></p>
+<p><span class='label'>This is a 'context' space. Context is a grouping of users such as a course or writing group.</span></p>
 <hr />
 
 <div class='span7'>
-    <p><span class='label'>This is a 'context' space. Context is a grouping of users such as a course or writing group.</span></p>
 
     <%= link_to raw("<i class='icon-plus-sign'></i>  Add a New Activity"), new_context_prompt_path(@context) %>
 
