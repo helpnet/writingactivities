@@ -1,8 +1,16 @@
 <%= link_to "<< Back To Group", @context %>
+
 <h2><%= @prompt.title %></h2>
 <%= link_to "[Edit]", edit_context_prompt_path(@context, @prompt) %>
+
 <p><%= @prompt.body %></p>
-<%= link_to "Submit a Draft", new_prompt_submission_path(@prompt), :class => 'btn' %>
+
+<% if @prompt.has_submission_by?(current_user) %>
+    <span class='btn disabled'>You Already Submitted</span>
+<% else %>
+    <%= link_to "Submit a Draft", new_prompt_submission_path(@prompt), :class => 'btn' %>
+<% end %>
+
 <h2>Drafts</h2>
 <%= div_for @prompt.submissions do |submission|  %>
     <%= link_to submission.user.email, prompt_submission_path(@prompt, submission) %>
