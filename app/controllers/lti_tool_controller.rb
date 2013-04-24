@@ -67,6 +67,8 @@ class LtiToolController < ApplicationController
 
     def authorize!
 
+        reset_session
+
         @valid_lti = false
 
         if key = params['oauth_consumer_key']
