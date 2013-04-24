@@ -105,6 +105,7 @@ class LtiToolController < ApplicationController
         if @valid_lti
             session['launch_params'] = @tp.to_params
             session['lti_username'] = @tp.username
+            session['current_context'] = @tp.context_label
         end
     end
 

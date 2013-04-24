@@ -5,7 +5,7 @@
     <% if current_user and current_user.contexts.length > 0 %>
         <h2>My Groups</h2>
         <%= div_for current_user.contexts do |context| %>
-            <%= link_to "#{context.context_label} #{context.context_title}", context %>
+            <%= link_to_context(context) %>
         <% end %>
     <% end %>
 
