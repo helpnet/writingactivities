@@ -29,7 +29,7 @@ Given(/^I send "(.*?)" as "(.*?)" to "(.*?)"$/) do |param, input, path|
 end
 
 Then(/^I should see list item "(.*?)"$/) do |content|
-    page.body.include?("<li>" + content + " </li>").should be_true
+    page.body.include?("<li>" + content + "</li>").should be_true
 end
 
 Then(/^I should see html "(.*?)"$/) do |arg1|
