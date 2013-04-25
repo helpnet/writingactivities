@@ -5,6 +5,10 @@
 
 <p><%= @prompt.body %></p>
 
+<% unless @review_types.empty? %>
+    <p>Available review types: <%= @review_types %></p>
+<% end %>
+
 <% if @prompt.has_submission_by?(current_user) %>
     <span class='btn disabled'>You Already Submitted</span>
 <% else %>
