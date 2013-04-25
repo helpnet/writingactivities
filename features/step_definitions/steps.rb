@@ -20,6 +20,15 @@ Given(/^the following memberships exist:$/) do |table|
     end
 end
 
+# TODO: Make this context association more specific
+
+Given(/^the following prompts exist:$/) do |table|
+    table.hashes.each do |prompt|
+        context = Context.last
+        Context.last.prompts.create( title: prompt[:title], body: prompt[:body])
+    end
+end
+
 Given(/^I am on the "(.*?)" page$/) do |arg1|
     visit "/#{arg1}"
 end
@@ -77,4 +86,10 @@ Given(/^"(.*?)" is logged in$/) do |email|
     fill_in "user_email", :with => email
     fill_in "user_password", :with => 'testpass'
     click_button "Sign in"
+end
+
+Then(/^I should see "(.*?)" listed under Drafts$/) do |email|
+    page.should have_selector ".content" do |matches|
+        matches.should have_content email
+    end
 end
