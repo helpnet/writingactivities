@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425131257) do
+ActiveRecord::Schema.define(:version => 20130425144452) do
 
   create_table "activities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(:version => 20130425131257) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "review_types", :force => true do |t|
+    t.string   "review_type"
+    t.integer  "prompt_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "review_types", ["prompt_id"], :name => "index_review_types_on_prompt_id"
 
   create_table "submissions", :force => true do |t|
     t.integer  "user_id"

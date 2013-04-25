@@ -1,0 +1,2 @@
+class ReviewTypesController < ApplicationController
+end

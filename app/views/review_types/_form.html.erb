@@ -1,0 +1,6 @@
+<h3>Review Types</h3>
+<%= form.fields_for :review_types do |review_type_form| %>
+    <% ReviewType.review_types.each do |type| %>
+        <%= check_box_tag "review_types[]", type %> <%= type %>
+    <% end %>
+<% end %>
