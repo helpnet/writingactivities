@@ -1,4 +1,4 @@
-<% @prompt.review_types.build unless @prompt.review_types %>
+<% @prompt.review_types.build if @prompt.review_types.empty? %>
 <%= form_for([@context, @prompt]) do |f| %>
     <div>
         <%= f.label :title %>
