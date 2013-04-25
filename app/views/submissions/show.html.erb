@@ -4,9 +4,9 @@
 
 <% if current_user == @submission.user %>
     <h3>Peer Feedback</h3>
-    <%= render 'peer_evaluations/feedback' %>
+    <%= render 'basic_reviews/feedback' %>
 <% elsif @submission.has_been_reviewed_by?(current_user) %>
     <div class='alert alert-success'>Thank you for your review!</div>
 <% else %>
-    <%= render 'peer_evaluations/form' %>
+    <%= render 'basic_reviews/form' %>
 <% end %>

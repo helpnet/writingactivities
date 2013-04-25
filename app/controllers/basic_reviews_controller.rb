@@ -1,4 +1,4 @@
-class PeerEvaluationsController < ApplicationController
+class BasicReviewsController < ApplicationController
     
     def new
         @submission = Submission.find(params[:id])
@@ -6,10 +6,10 @@ class PeerEvaluationsController < ApplicationController
     
     def create
         @submission = Submission.find(params[:submission_id])
-        @peer_evaluation = @submission.peer_evaluations.new(params[:peer_evaluation])
-        @peer_evaluation.user_id = current_user.id
+        @basic_review = @submission.basic_reviews.new(params[:basic_review])
+        @basic_review.user_id = current_user.id
 
-        if @peer_evaluation.save
+        if @basic_review.save
             redirect_to prompt_submission_path(@submission.prompt, @submission)
         else
             redirect_to create

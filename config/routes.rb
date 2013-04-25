@@ -24,7 +24,7 @@ Writingactivities::Application.routes.draw do
     end
 
     resources :submissions do
-        resources :peer_evaluations
+        resources :basic_reviews
     end
 
 

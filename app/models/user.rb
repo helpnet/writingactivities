@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :contexts, :through => :memberships
   has_many :submissions
-  has_many :peer_evaluations
+  has_many :basic_reviews
 
 end

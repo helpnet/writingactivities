@@ -1,4 +1,4 @@
-<%= form_for([@submission, @submission.peer_evaluations.build]) do |f| %>
+<%= form_for([@submission, @submission.basic_reviews.build]) do |f| %>
     <div>
         <%= f.label :main_idea, "Summarize the main idea in one sentence:" %>
         <%= f.text_area :main_idea, :class => 'span6', :rows => 3 %>
