@@ -17,7 +17,7 @@ class PromptsController < ApplicationController
 
         if @prompt.save
             create_review_types
-            redirect_to context_prompt_path(@context, @prompt)
+            redirect_to @context
         else
             render :create
         end
