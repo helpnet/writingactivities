@@ -13,9 +13,11 @@ module ApplicationHelper
     end
 
     def link_to_context(context)
-        flag = current_context.context_label == context.context_label ? "<span class='label label-warning'>LTI</span> " : ''
+        if current_context.respond_to? :context_label
+            flag = current_context.context_label == context.context_label ? "<span class='label label-warning'>LTI</span> " : ''
 
-        link_to raw("#{flag}#{context.context_label} #{context.context_title}"), context
+            link_to raw("#{flag}#{context.context_label} #{context.context_title}"), context
+        end
     end
 
     def get_review_type_form_state(prompt, review_type_id)
