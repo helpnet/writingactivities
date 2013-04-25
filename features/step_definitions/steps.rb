@@ -29,6 +29,17 @@ Given(/^the following prompts exist:$/) do |table|
     end
 end
 
+Given(/^the following submissions exist:$/) do |table|
+    table.hashes.each do |submission|
+        user = User.find_by_email(submission[:user])
+        prompt = Prompt.find_by_title(submission[:prompt])
+
+        submission = prompt.submissions.new( body: submission[:body] )
+        submission.user_id = user.id
+        assert submission.save
+    end
+end
+
 Given(/^I am on the "(.*?)" page$/) do |arg1|
     visit "/#{arg1}"
 end
