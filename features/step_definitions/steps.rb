@@ -40,6 +40,16 @@ Given(/^the following submissions exist:$/) do |table|
     end
 end
 
+Given(/^the following review type associations exist:$/) do |table|
+    table.hashes.each do |review_type|
+        review_type.inspect
+        prompt = Prompt.find_by_title(review_type[:prompt]).id
+
+        type = ReviewType.new(review_type: review_type[:type], prompt_id: prompt)
+        assert type.save
+    end
+end
+
 Given(/^I am on the "(.*?)" page$/) do |arg1|
     visit "/#{arg1}"
 end

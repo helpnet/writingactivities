@@ -24,6 +24,10 @@ Feature: Making a basic review
             | title             | body                      |
             | Test Assignment   | Submit something cool     |
 
+        Given the following review type associations exist:
+            | type              | prompt            |
+            | basic_reviews     | Test Assignment   |
+
         Given the following submissions exist:
             | user              | prompt            | body                      |
             | ralph@example.com | Test Assignment   | This is a great submission|
@@ -35,4 +39,8 @@ Feature: Making a basic review
         And I click "ralph@example.com"
         Then I should see "This is a great submission"
         And I should see "Basic Review"
-
+        And I fill in "basic_review_main_idea" with "It's about something awesome."
+        And I fill in "basic_review_works" with "Great job with this thing."
+        And I fill in "basic_review_does_not_work" with "Work on this other thing."
+        And I press "Create Basic review"
+        Then I should see "Thank you for your review!"
