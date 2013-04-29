@@ -1,4 +1,4 @@
-Feature: Making a basic evaluation
+Feature: Making a basic review
     As a learner
     So that I can provide structured feedback for other students
     I want to be able to add peer feedback to a submission
@@ -34,5 +34,5 @@ Feature: Making a basic evaluation
         And I click "Test Assignment"
         And I click "ralph@example.com"
         Then I should see "This is a great submission"
-        Then I click "Write Basic Review"
+        Then I click "Create Basic Review"
 

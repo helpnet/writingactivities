@@ -3,6 +3,7 @@ class SubmissionsController < ApplicationController
     def show
         @prompt = Prompt.find(params[:prompt_id])
         @submission = Submission.find(params[:id])
+        @review_types = @prompt.review_types.map(&:review_type)
     end
 
     def new

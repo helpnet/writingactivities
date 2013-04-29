@@ -8,5 +8,24 @@
 <% elsif @submission.has_been_reviewed_by?(current_user) %>
     <div class='alert alert-success'>Thank you for your review!</div>
 <% else %>
-    <%= render 'basic_reviews/form' %>
-<% end %>
+    <ul class='nav nav-tabs'>
+        <% @review_types.each_with_index do |review_type, index| %>
+            <% if index == 0 %>
+                <li class='active'><a href='#<%= review_type %>' data-toggle='tab'><%= ReviewType.review_types[review_type.to_sym] %></a></li>
+            <% else %>
+                <li><a href='#<%= review_type %>' data-toggle='tab'><%= ReviewType.review_types[review_type.to_sym] %></a></li>
+            <% end %>
+
+        <% end %>
+    </ul>
+
+    <div class='tab-content'>
+
+        <% @review_types.each do |review_type| %>
+            <div id='<%= review_type %>' class='tab-pane fade in active'>
+                <%= render "#{review_type}/form" %>
+            </div>
+        <% end %>
+    <% end %>
+
+</div>
