@@ -114,3 +114,14 @@ Then(/^I should see "(.*?)" listed under Drafts$/) do |email|
         matches.should have_content email
     end
 end
+
+Given(/^I click "(.*?)" listed under drafts$/) do |email|
+    within page.find(".content") do |content|
+        click_link email
+    end
+end
+
+Then(/^I am logged out$/) do
+    click_link "Sign Out"
+    assert page.should have_content "Signed out successfully."
+end

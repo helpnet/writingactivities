@@ -44,3 +44,24 @@ Feature: Making a basic review
         And I fill in "basic_review_does_not_work" with "Work on this other thing."
         And I press "Create Basic review"
         Then I should see "Thank you for your review!"
+
+    Scenario: Viewing basic evaluation
+        Given "sally@example.com" is logged in
+        Given I am on the context page for "TC101"
+        And I click "Test Assignment"
+        And I click "ralph@example.com"
+        Then I should see "This is a great submission"
+        And I should see "Basic Review"
+        And I fill in "basic_review_main_idea" with "It's about something awesome."
+        And I fill in "basic_review_works" with "Great job with this thing."
+        And I fill in "basic_review_does_not_work" with "Work on this other thing."
+        And I press "Create Basic review"
+        Then I should see "Thank you for your review!"
+        Then I am logged out
+        And "ralph@example.com" is logged in
+        And I am on the context page for "TC101"
+        And I click "Test Assignment"
+        And I click "ralph@example.com" listed under drafts
+        Then I should see "It's about something awesome."
+        And I should see "Great job with this thing."
+        And I should see "Work on this other thing."
