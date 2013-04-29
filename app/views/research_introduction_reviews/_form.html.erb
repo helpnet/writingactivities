@@ -1,4 +1,6 @@
 <%= form_for([@submission, @submission.research_introduction_reviews.build]) do |f| %>
+    <%= render 'shared/errors' %>
+
     <div>
         <%= f.label :clarity, "Is this introduction clear?" %>
         <%= f.text_area :clarity, :class => 'span6', :rows => 3 %>
