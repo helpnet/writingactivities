@@ -33,7 +33,9 @@ class PromptsController < ApplicationController
         @context = Context.find(params[:context_id])
         @prompt = Prompt.find(params[:id])
         @prompt.update_attributes(params[:prompt])
+
         create_review_types
+        destroy_review_types
 
         redirect_to context_prompt_path(@context, @prompt)
     end
@@ -44,6 +46,21 @@ class PromptsController < ApplicationController
                 ReviewType.find_or_create_by_prompt_id_and_review_type(@prompt.id, review_type)
             end
         end
+    end
+
+    def destroy_review_types
+        if !params[:review_types]
+            @prompt.review_types.destroy_all
+        elsif params[:review_types]
+            if @prompt.review_types.length > params[:review_types].length
+                types_to_destroy = @prompt.review_types.map(&:review_type) - params[:review_types]
+
+                types_to_destroy.each do |type|
+                    @prompt.review_types.where('review_type = ?', type).destroy_all
+                end
+            end
+        end
+
     end
 
 end
