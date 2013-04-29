@@ -5,7 +5,6 @@ class Prompt < ActiveRecord::Base
   has_many :submissions
   has_many :review_types, :dependent => :destroy
 
-  accepts_nested_attributes_for :review_types, :allow_destroy => true #:reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
 
   def has_submission_by?(user)
       user.submissions.map { |s| s.prompt_id }.include?(self.id)
