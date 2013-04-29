@@ -2,6 +2,7 @@
 <h2><%= @prompt.title %></h2>
 <p class='lead'>By <%= @submission.user.email %></p>
 <p><%= simple_format @submission.body %></p>
+<%= link_to "[Edit]", edit_prompt_submission_path(@prompt, @submission) if current_user == @submission.user %>
 <hr />
 
 <% if current_user == @submission.user %>
