@@ -1,4 +1,6 @@
 <%= link_to "<< Back", context_prompt_path(@prompt.context, @prompt) %>
+<h2><%= @prompt.title %></h2>
+<p class='lead'>By <%= @submission.user.email %></p>
 <p><%= simple_format @submission.body %></p>
 <hr />
 
