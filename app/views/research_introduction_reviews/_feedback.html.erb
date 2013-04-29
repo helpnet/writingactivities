@@ -1,0 +1,32 @@
+<div class='row-fluid'>
+    <div class='span4'>
+        <h4>Clarity</h4>
+        <table class='table table-striped table-bordered'>
+            <% @submission.research_introduction_reviews.each do |evaluation| %>
+                <tr>
+                    <td><%= raw helpful_tooltip%> <%= evaluation.clarity %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+    <div class='span4'>
+        <h4>The Hook</h4>
+        <table class='table table-striped table-bordered'>
+            <% @submission.research_introduction_reviews.each do |evaluation| %>
+                <tr>
+                    <td><%= raw helpful_tooltip%>  <%= evaluation.hook %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+    <div class='span4'>
+        <h4>So What?</h4>
+        <table class='table table-striped table-bordered'>
+            <% @submission.research_introduction_reviews.each do |evaluation| %>
+                <tr>
+                    <td><%= raw helpful_tooltip%> <%= evaluation.so_what %></td>
+                </tr>
+                <% end %>
+        </table>
+    </div>
+</div>

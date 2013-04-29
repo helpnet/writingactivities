@@ -4,7 +4,32 @@
 
 <% if current_user == @submission.user %>
     <h3>Peer Feedback</h3>
-    <%= render 'basic_reviews/feedback' %>
+
+    <ul class='nav nav-tabs'>
+
+        <% @review_types.each_with_index do |review_type, index| %>
+            <% if index == 0 %>
+                <li class='active'><a href='#<%= review_type %>' data-toggle='tab'><%= ReviewType.review_types[review_type.to_sym] %></a></li>
+            <% else %>
+                <li><a href='#<%= review_type %>' data-toggle='tab'><%= ReviewType.review_types[review_type.to_sym] %></a></li>
+            <% end %>
+        <% end %>
+    </ul>
+
+    <div class='tab-content'>
+        <% @review_types.each_with_index do |review_type, index| %>
+                <% if index == 0 %>
+                    <div id='<%= review_type %>' class='tab-pane fade in active'>
+                        <%= render "#{review_type}/feedback" %>
+                    </div>
+                <% else %>
+                    <div id='<%= review_type %>' class='tab-pane fade'>
+                        <%= render "#{review_type}/feedback" %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+
 <% else %>
     <ul class='nav nav-tabs'>
         <% @review_types.each_with_index do |review_type, index| %>
@@ -20,7 +45,6 @@
     <div class='tab-content'>
 
         <% @review_types.each_with_index do |review_type, index| %>
-
 
             <% if index == 0 %>
                 <div id='<%= review_type %>' class='tab-pane fade in active'>
