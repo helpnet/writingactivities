@@ -31,7 +31,7 @@ Feature: Adding an activity to a course
         Then I should see "Submit An Idea"
         And I click "Submit An Idea"
         Then I should see "Your idea should include good stuff"
-        And I should see "Available review types: basic_reviews"
+        And I should see "Available review types: Basic Review"
 
     Scenario: Editing an existing activity to use basic review type
         Given "prof@example.com" is logged in
@@ -47,4 +47,4 @@ Feature: Adding an activity to a course
         And I click "[Edit]"
         And I select the "basic_reviews" checkbox
         And I press "Update Prompt"
-        Then I should see "Available review types: basic_reviews"
+        Then I should see "Available review types: Basic Review"
