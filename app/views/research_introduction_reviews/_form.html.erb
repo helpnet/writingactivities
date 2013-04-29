@@ -1,0 +1,17 @@
+<%= form_for([@submission, @submission.research_introduction_reviews.build]) do |f| %>
+    <div>
+        <%= f.label :clarity, "Is this introduction clear?" %>
+        <%= f.text_area :clarity %>
+    </div>
+
+    <div>
+        <%= f.label :hook, "What's the 'hook' that makes you want to keep reading this paper?" %>
+        <%= f.text_area :hook %>
+    </div>
+
+    <div>
+        <%= f.label :so_what, "'So what?' What problem is this research paper solving?" %>
+        <%= f.text_area :so_what %>
+    </div>
+    <%= f.submit :class => 'btn' %>
+<% end %>

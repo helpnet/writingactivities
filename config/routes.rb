@@ -25,6 +25,7 @@ Writingactivities::Application.routes.draw do
 
     resources :submissions do
         resources :basic_reviews
+        resources :research_introduction_reviews
     end
 
 

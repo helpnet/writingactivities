@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  prompt: 
+  so_what: MyText
+  hook: MyText
+  clarity: MyText
+
+two:
+  prompt: 
+  so_what: MyText
+  hook: MyText
+  clarity: MyText

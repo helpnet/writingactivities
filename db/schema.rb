@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425144452) do
+ActiveRecord::Schema.define(:version => 20130429161618) do
 
   create_table "activities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -72,6 +72,19 @@ ActiveRecord::Schema.define(:version => 20130425144452) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "research_introduction_reviews", :force => true do |t|
+    t.text     "so_what"
+    t.text     "hook"
+    t.text     "clarity"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "submission_id"
+    t.integer  "user_id"
+  end
+
+  add_index "research_introduction_reviews", ["submission_id"], :name => "index_research_introduction_reviews_on_submission_id"
+  add_index "research_introduction_reviews", ["user_id"], :name => "index_research_introduction_reviews_on_user_id"
 
   create_table "review_types", :force => true do |t|
     t.string   "review_type"
