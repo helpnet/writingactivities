@@ -2,7 +2,14 @@ class PromptsController < ApplicationController
     def show
         @context = Context.find(params[:context_id])
         @prompt = Prompt.find(params[:id])
-        @review_types = @prompt.review_types.map(&:review_type).join(', ')
+        @review_types = []
+        
+        @prompt.review_types.map(&:review_type).each do |type|
+            @review_types << ReviewType.review_types[type.to_sym]
+        end
+
+        @review_types = @review_types.join(', ')
+
     end
 
     def new
