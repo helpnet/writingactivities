@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :contexts, :through => :memberships
   has_many :submissions
   has_many :basic_reviews
+  has_many :research_introduction_reviews
 
   def has_given_review_by_type(type, submission)
       reviews = self.send(type)

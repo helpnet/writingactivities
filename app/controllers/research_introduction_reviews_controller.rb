@@ -5,7 +5,7 @@ class ResearchIntroductionReviewsController < ApplicationController
 
     def create
         @submission = Submission.find(params[:submission_id])
-        @research_review = @submission.research_introduction_reviews.new(params[:basic_review])
+        @research_introduction_review = @submission.research_introduction_reviews.new(params[:basic_review])
         @research_introduction_review.user_id = current_user.id
 
         if @research_introduction_review.save

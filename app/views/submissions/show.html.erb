@@ -19,14 +19,24 @@
 
     <div class='tab-content'>
 
-        <% @review_types.each do |review_type| %>
+        <% @review_types.each_with_index do |review_type, index| %>
 
-            <% if current_user.has_given_review_by_type(review_type, @submission) %>
-                <div class='alert alert-success'>Thank you for your review!</div>
-            <% else %>
 
+            <% if index == 0 %>
                 <div id='<%= review_type %>' class='tab-pane fade in active'>
-                    <%= render "#{review_type}/form" %>
+                    <% if current_user.has_given_review_by_type(review_type, @submission) %>
+                        <div class='alert alert-success'>Thank you for your review!</div>
+                    <% else %>
+                        <%= render "#{review_type}/form" %>
+                    <% end %>
+                </div>
+            <% else %>
+                <div id='<%= review_type %>' class='tab-pane'>
+                    <% if current_user.has_given_review_by_type(review_type, @submission) %>
+                        <div class='alert alert-success'>Thank you for your review!</div>
+                    <% else %>
+                        <%= render "#{review_type}/form" %>
+                    <% end %>
                 </div>
             <% end %>
 
