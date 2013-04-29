@@ -5,8 +5,4 @@ class Submission < ActiveRecord::Base
 
   has_many :basic_reviews, :dependent => :destroy
 
-  def has_been_reviewed_by?(user)
-      user.basic_reviews.map { |e| e.submission_id }.include?(self.id)
-  end
-
 end

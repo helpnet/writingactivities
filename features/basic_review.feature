@@ -34,5 +34,5 @@ Feature: Making a basic review
         And I click "Test Assignment"
         And I click "ralph@example.com"
         Then I should see "This is a great submission"
-        Then I click "Create Basic Review"
+        And I should see "Basic Review"
 

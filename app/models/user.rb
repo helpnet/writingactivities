@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
   has_many :submissions
   has_many :basic_reviews
 
+  def has_given_review_by_type(type, submission)
+      reviews = self.send(type)
+      reviews.map(&:submission_id).include?(submission.id)
+  end
+
 end
