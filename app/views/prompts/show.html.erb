@@ -2,7 +2,7 @@
 
 <h3><%= @prompt.title %></h3>
 
-<p><%= @prompt.body %></p>
+<p><%= simple_format @prompt.body %></p>
 
 <% unless @review_types.empty? %>
     <p>Available review types: <%= @review_types %></p>

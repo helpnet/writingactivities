@@ -1,6 +1,6 @@
 <%= form_for([@prompt, @submission]) do |f| %>
     <%= f.label :body, "Enter your submission:" %>
-    <%= f.text_area :body, :class => 'span8', :rows => 10 %>
+    <%= f.text_area :body, :class => 'span8 wysihtml5', :rows => 10 %>
     <br />
     <%= f.submit :class => 'btn' %>
 <% end %>
