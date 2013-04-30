@@ -4,11 +4,12 @@
         <%= f.label :title %>
         <%= f.text_field :title %>
         <%= f.label :body %>
-        <%= f.text_area :body, :class => 'span6' %>
+        <%= f.text_area :body, :class => 'span6', :rows => 5 %>
     </div>
     <div>
         <%= render :partial => 'review_types/form', :locals => {:form => f} %>
     </div>
+    <br />
 
     <div>
         <%= f.submit :class => 'btn' %>
