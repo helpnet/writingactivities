@@ -4,7 +4,7 @@
 
     <div class='span7'>
 
-        <%= link_to raw("<i class='icon-plus-sign'></i>  Add a New Activity"), new_context_prompt_path(@context) %>
+        <%= link_to raw("<i class='icon-plus-sign'></i>  Add a New Activity"), new_context_prompt_path(@context) if current_user.role_in(@context) == "instructor" %>
 
         <% if @context.prompts.length > 0 %>
             <h3>Activities</h3>

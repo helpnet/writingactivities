@@ -7,7 +7,7 @@
 <% unless @review_types.empty? %>
     <p>Available review types: <%= @review_types %></p>
 <% end %>
-<%= link_to "[Edit]", edit_context_prompt_path(@context, @prompt) %>
+<%= link_to "[Edit]", edit_context_prompt_path(@context, @prompt) if current_user.role_in(@context) == 'instructor' %>
 
 <div>
     <% if @prompt.has_submission_by?(current_user) %>
