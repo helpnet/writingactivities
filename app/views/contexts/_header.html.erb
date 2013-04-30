@@ -1,0 +1,10 @@
+<div class='row-fluid'>
+    <div class='span6'>
+        <h2><%= link_to "#{@context.context_label} #{@context.context_title}", @context %></h2>
+    </div>
+    <% if @role %>
+        <div class='span6'>
+            <p class='pull-right small-top-margin'><i>Viewing course as: </i><span class='label label-info'><%= @role %></span></p>
+        </div>
+    <% end %>
+</div>

@@ -1,16 +1,18 @@
-<h2><%= link_to "#{@context.context_label} #{@context.context_title}", @context %></h2>
-<p><i>Viewing course as: </i><span class='label label-info'><%= @role %></span></p>
-<p><span class='label'>This is a 'context' space. Context is a grouping of users such as a course or writing group.</span></p>
-<hr />
+<%= render 'header' %>
 
-<div class='span7'>
+<div class='row-fluid'>
 
-    <%= link_to raw("<i class='icon-plus-sign'></i>  Add a New Activity"), new_context_prompt_path(@context) %>
+    <hr />
 
-    <% if @context.prompts.length > 0 %>
-        <h3>Activities</h3>
-        <%= div_for @context.prompts do |prompt| %>
-            <%= link_to prompt.title, context_prompt_path(@context, prompt) %>
+    <div class='span7'>
+
+        <%= link_to raw("<i class='icon-plus-sign'></i>  Add a New Activity"), new_context_prompt_path(@context) %>
+
+        <% if @context.prompts.length > 0 %>
+            <h3>Activities</h3>
+            <%= div_for @context.prompts do |prompt| %>
+                <%= link_to prompt.title, context_prompt_path(@context, prompt) %>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
 </div>
