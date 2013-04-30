@@ -44,4 +44,10 @@ FactoryGirl.define do
         prompt_id 1
     end
 
+    factory :membership do
+        user_id 1
+        context_id 1
+        role 'learner'
+    end
+
 end

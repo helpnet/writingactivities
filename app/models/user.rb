@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
       reviews.map(&:submission_id).include?(submission.id)
   end
 
+  def role_in(context)
+      self.memberships.where('context_id = ?', context.id).first.role
+  end
+
 end
