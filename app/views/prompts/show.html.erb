@@ -9,6 +9,7 @@
 <% end %>
 <%= link_to "[Edit]", edit_context_prompt_path(@context, @prompt) if current_user.role_in(@context) == 'instructor' %>
 
+<h2>Drafts</h2>
 <div>
     <% if @prompt.has_submission_by?(current_user) %>
         <span class='btn disabled'>You Already Submitted</span>
@@ -16,8 +17,7 @@
         <%= link_to "Submit a Draft", new_prompt_submission_path(@prompt), :class => 'btn' %>
     <% end %>
 </div>
-
-<h2>Drafts</h2>
+<br />
 <%= div_for @prompt.submissions do |submission|  %>
     <%= link_to submission.user.email, prompt_submission_path(@prompt, submission) %> -- <span class='badge badge-warning'><%= submission.number_of_reviews %></span> 
     <%= submission.number_of_reviews == 1 ? "review" : "reviews" %>
