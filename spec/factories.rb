@@ -50,4 +50,9 @@ FactoryGirl.define do
         role 'learner'
     end
 
+    factory :consumer do
+        name 'key'
+        key 'secret'
+    end
+
 end
