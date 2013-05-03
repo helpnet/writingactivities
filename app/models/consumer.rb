@@ -58,4 +58,8 @@ class Consumer < ActiveRecord::Base
 
     end
 
+    def self.set_up_context(consumer, tp)
+        consumer.contexts.find_or_create_by_context_label_and_context_title(tp.context_label, tp.context_title) if tp.context_label and tp.context_title
+    end
+
 end

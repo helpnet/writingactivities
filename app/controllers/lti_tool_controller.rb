@@ -10,15 +10,13 @@ class LtiToolController < ApplicationController
         if @tp.lti_msg = 'success'
 
             @consumer = Consumer.find_by_key(params['oauth_consumer_key'])
-            
-            @context = @consumer.contexts.find_or_create_by_context_label_and_context_title(@tp.context_label, @tp.context_title) if @tp.context_label and  @tp.context_title
+
+            @context = Consumer.set_up_context(@consumer, @tp)
             
             user = create_or_sign_in(@tp.lis_person_contact_email_primary) if @tp.lis_person_contact_email_primary
 
             if user && @tp.roles
-
                 role = set_role(@tp.roles)
-
                 Membership.create!( :user_id => user.id, :context_id => @context.id, :role => role ) unless user.contexts.include?(@context)
             end
             
