@@ -47,6 +47,14 @@ class PromptsController < ApplicationController
         redirect_to context_prompt_path(@context, @prompt)
     end
 
+    def destroy
+        @prompt = Prompt.find(params[:id])
+        @context = @prompt.context
+        @prompt.destroy
+
+        redirect_to @contextA
+    end
+
     def create_review_types
         if params[:review_types]
             params[:review_types].each do |review_type|
