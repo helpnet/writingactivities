@@ -9,7 +9,7 @@
         <% if @context.prompts.length > 0 %>
             <h3>Activities</h3>
             <%= div_for @context.prompts do |prompt| %>
-                <%= link_to prompt.title, context_prompt_path(@context, prompt) %>
+                <p class='lead'><%= link_to prompt.title, context_prompt_path(@context, prompt) %></p>
             <% end %>
         <% end %>
     </div>
