@@ -13,9 +13,7 @@ class LtiToolController < ApplicationController
             session['current_context'] = @tp.context_label
 
             @consumer = Consumer.find_by_key(params['oauth_consumer_key'])
-
             @context = Consumer.set_up_context(@consumer, @tp)
-            
             user = create_or_sign_in(@tp.lis_person_contact_email_primary) if @tp.lis_person_contact_email_primary
 
             if user && @tp.roles
