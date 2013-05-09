@@ -63,4 +63,16 @@ class Consumer < ActiveRecord::Base
         consumer.contexts.find_or_create_by_context_label_and_context_title(tp.context_label, tp.context_title) if tp.context_label and tp.context_title
     end
 
+    def self.set_role(roles)
+        if roles.include?("urn:lti:role:ims/lis/instructor") or roles.include?("instructor")
+            "instructor"
+        else
+            "learner"
+        end 
+    end
+
+    def self.set_membership(tp, user, context)
+        role = set_role(tp.roles)
+        Membership.create!( :user_id => user.id, :context_id => context.id, :role => role ) unless user.contexts.include?(context)
+    end
 end

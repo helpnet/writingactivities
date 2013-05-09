@@ -19,8 +19,7 @@ class LtiToolController < ApplicationController
             user = create_or_sign_in(@tp.lis_person_contact_email_primary) if @tp.lis_person_contact_email_primary
 
             if user && @tp.roles
-                role = set_role(@tp.roles)
-                Membership.create!( :user_id => user.id, :context_id => @context.id, :role => role ) unless user.contexts.include?(@context)
+                Consumer.set_membership(@tp, user, @context)
             end
             
             if @tp.custom_params['path']
@@ -71,11 +70,4 @@ class LtiToolController < ApplicationController
         sign_in :user, user
     end
 
-    def set_role(roles)
-        if roles.include?("urn:lti:role:ims/lis/instructor") or roles.include?("instructor")
-            "instructor"
-        else
-            "learner"
-        end
-    end
 end
