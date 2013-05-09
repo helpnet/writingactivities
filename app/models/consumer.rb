@@ -52,14 +52,11 @@ class Consumer < ActiveRecord::Base
 
     def self.nonce_is_valid?(nonce, timestamp)
         if existing_nonce = NonceTimestamp.find_by_nonce(nonce)
-            if existing_nonce.oauth_timestamp == timestamp
-                return false
-            else
-                return true
-            end
+            existing_nonce.oauth_timestamp == timestamp ? validity = false : validity = true
         else
-            return true
+            validity = true
         end
+        return validity
     end
 
     def self.set_up_context(consumer, tp)
