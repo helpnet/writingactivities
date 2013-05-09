@@ -3,3 +3,4 @@
 <h3>Edit Prompt</h3>
 
 <%= render 'form' %>
+<%= link_to "Delete", @prompt, :method => "delete", :class => 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
