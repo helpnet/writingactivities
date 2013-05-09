@@ -4,10 +4,9 @@ class LtiToolController < ApplicationController
 
         reset_session
 
-        @lti_launch = Consumer.authorize!(params, request)
-        @tp = @lti_launch
+        @tp = Consumer.authorize!(params, request)
 
-        if @tp.lti_msg = 'success'
+        if @tp.lti_msg == 'success'
 
             session['launch_params'] = @tp.to_params
             session['lti_username'] = @tp.username
@@ -34,7 +33,7 @@ class LtiToolController < ApplicationController
                 end
             end
         else
-            redirect_to :root, :alert => @lti_launch.message
+            redirect_to :root, :alert => @tp.lti_msg
         end
 
     end

@@ -10,37 +10,39 @@ class Consumer < ActiveRecord::Base
         if key = params['oauth_consumer_key']
             if @consumer = Consumer.find_by_key(key) and secret = @consumer.secret
                 @tp = IMS::LTI::ToolProvider.new(key, secret, params)
-                @message = "Successful LTI launch."
                 @valid_lti = true
             else
                 @tp = IMS::LTI::ToolProvider.new(nil, nil, params)
                 @tp.lti_msg = "Your consumer didn't use a recognized key."
                 @tp.lti_errorlog = "You did it wrong!"
-                @message = "Consumer key wasn't recognized."
+                @valid_lti = false
+                return @tp
             end 
+
         else
-            @message = "No consumer key"
+            @tp.lti_msg = "No consumer key"
+            return @tp
         end 
 
         if !@tp.valid_request?(request)
-            @message = "The OAuth signature was invalid."
+            @tp.lti_msg = "The OAuth signature was invalid."
             @valid_lti = false
+            return @tp
         end 
 
         if Time.now.utc.to_i - @tp.request_oauth_timestamp.to_i > 60*60
             @valid_lti = false
-            @message = "Request is too old"
+            @tp.lti_msg = "Request is too old"
+            return @tp
         end 
 
         if !nonce_is_valid?(@tp.request_oauth_nonce, @tp.request_oauth_timestamp)
             @valid_lti = false
-            @message = "Nonce was already used, please try again."
+            @tp.lti_msg = "Nonce was already used, please try again."
+            return @tp
         end 
 
         if @valid_lti
-            session['launch_params'] = @tp.to_params
-            session['lti_username'] = @tp.username
-            session['current_context'] = @tp.context_label
             @tp.lti_msg = 'success'
         end 
 
@@ -52,10 +54,12 @@ class Consumer < ActiveRecord::Base
         if existing_nonce = NonceTimestamp.find_by_nonce(nonce)
             if existing_nonce.oauth_timestamp == timestamp
                 return false
+            else
+                return true
             end
-
+        else
+            return true
         end
-
     end
 
     def self.set_up_context(consumer, tp)
