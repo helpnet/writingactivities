@@ -22,14 +22,10 @@ class LtiToolController < ApplicationController
                 Consumer.set_membership(@tp, user, @context)
             end
             
-            if @tp.custom_params['path']
-                redirect_to "/#{@tp.custom_params['path']}"
+            if user
+                redirect_to @context, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
             else
-                if user
-                    redirect_to @context, :notice => "Successful LTI launch from #{@tp.context_label}: #{@tp.context_title}"
-                else
-                    redirect_to :root, :notice => "No valid user data"
-                end
+                redirect_to :root, :notice => "No valid user data"
             end
         else
             redirect_to :root, :alert => @tp.lti_msg
