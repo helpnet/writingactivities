@@ -9,6 +9,10 @@ class LtiToolController < ApplicationController
 
         if @tp.lti_msg = 'success'
 
+            session['launch_params'] = @tp.to_params
+            session['lti_username'] = @tp.username
+            session['current_context'] = @tp.context_label
+
             @consumer = Consumer.find_by_key(params['oauth_consumer_key'])
 
             @context = Consumer.set_up_context(@consumer, @tp)
