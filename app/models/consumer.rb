@@ -54,6 +54,7 @@ class Consumer < ActiveRecord::Base
         if existing_nonce = NonceTimestamp.find_by_nonce(nonce)
             existing_nonce.oauth_timestamp == timestamp ? validity = false : validity = true
         else
+            NonceTimestamp.create(:nonce => nonce, :oauth_timestamp => timestamp)
             validity = true
         end
         return validity
