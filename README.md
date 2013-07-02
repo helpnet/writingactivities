@@ -2,7 +2,7 @@ Writing Activities
 =================
 About
 ------
-Proof-of-concept writing activities
+Proof-of-concept project experimenting with peer review for writing education.
 
 Installation
 ------------
